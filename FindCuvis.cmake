@@ -14,14 +14,21 @@ include(FindPackageHandleStandardArgs)
 
 mark_as_advanced(Cuvis_LIBRARY Cuvis_INCLUDE_DIR)
 
-if(Cuvis_FOUND AND NOT TARGET cuvis::c)
-  add_library(cuvis::c STATIC IMPORTED)
-  set_target_properties(
-    cuvis::c
-    PROPERTIES
-      INTERFACE_INCLUDE_DIRECTORIES "${Cuvis_INCLUDE_DIR}"
-      IMPORTED_LOCATION ${Cuvis_LIBRARY})
 
+if(NOT Cuvis_LIBRARY)
+	message(FATAL_ERROR "Could not locate cuvis library")
+else()
+  if(NOT TARGET cuvis::c)
+	  add_library(cuvis::c STATIC IMPORTED)
+	  set_target_properties(
+		cuvis::c
+		PROPERTIES
+		  INTERFACE_INCLUDE_DIRECTORIES "${Cuvis_INCLUDE_DIR}"
+		  IMPORTED_LOCATION ${Cuvis_LIBRARY})
+	  
+	  
+  endif()
+  
   # Function to extract version from DLL
   function(get_library_version LIB_PATH OUTPUT_VARIABLE)
     set(GET_VERSION_SOURCE "${CMAKE_CURRENT_LIST_DIR}/helper/get_version.c")
@@ -40,6 +47,7 @@ if(Cuvis_FOUND AND NOT TARGET cuvis::c)
 			message(FATAL_ERROR "Failed to compile and run get_version_executable")
 		endif()
 		set(${OUTPUT_VARIABLE} "${${OUTPUT_VARIABLE}}" CACHE INTERNAL "${OUTPUT_VARIABLE}")
+
   endfunction()
 
   # Get the version of the library
@@ -65,9 +73,10 @@ if(Cuvis_FOUND AND NOT TARGET cuvis::c)
   set(Cuvis_VERSION "${lib_version_MAJOR}.${lib_version_MINOR}.${lib_version_PATCH}" CACHE INTERNAL "")
   set(Cuvis_INCLUDE_DIRS "${Cuvis_INCLUDE_DIR}" CACHE INTERNAL "")
   set(Cuvis_LIBRARIES "cuvis::c" CACHE INTERNAL "")
-  
+
   find_package_handle_standard_args(Cuvis
-	REQUIRED_VARS Cuvis_LIBRARY Cuvis_INCLUDE_DIR
-	VERSION_VAR Cuvis_VERSION)
-  
+		REQUIRED_VARS Cuvis_LIBRARY Cuvis_INCLUDE_DIR
+		VERSION_VAR Cuvis_VERSION)
+
+
 endif()
