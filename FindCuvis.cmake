@@ -31,30 +31,32 @@ else()
 			
 	  if(DOXYGEN_BUILD_DOCUMENTATION)
 		  if(NOT DOXYGEN_FOUND)
-			 message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+			 message(status "Doxygen is needed to build the documentation.")
+	      else()
+			  if(NOT TARGET cuvis_c_doxygen)
+			  
+				  file(MAKE_DIRECTORY  ${CMAKE_BINARY_DIR}/doc )
+					
+					set(MAINPAGE ${CMAKE_CURRENT_LIST_DIR}/doc/mainpage.h)
+					set(DOXYGEN_IN ${CMAKE_CURRENT_LIST_DIR}/doxygen/doxyfile_iface.in)
+					set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/doxyfile_iface)
+
+					# request to configure the file
+					configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)	
+					
+					add_custom_target(cuvis_c_doxygen 
+					COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxyfile_iface
+									  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+									  COMMENT "Generating API documentation with Doxygen (iface)"
+									  VERBATIM
+					)
+					
+					
+			  
+				endif()
 		  endif()
 		  
-		  if(NOT TARGET cuvis_c_doxygen)
 		  
-			  file(MAKE_DIRECTORY  ${CMAKE_BINARY_DIR}/doc )
-				
-				set(MAINPAGE ${CMAKE_CURRENT_LIST_DIR}/doc/mainpage.hpp)
-				set(DOXYGEN_IN ${CMAKE_CURRENT_LIST_DIR}/doxygen/doxyfile_iface.in)
-				set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/doxyfile_iface)
-
-				# request to configure the file
-				configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)	
-				
-				add_custom_target(cuvis_c_doxygen 
-				COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxyfile_iface
-								  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-								  COMMENT "Generating API documentation with Doxygen (iface)"
-								  VERBATIM
-				)
-				
-				
-		  
-		    endif()
 		add_dependencies(cuvis::c cuvis_c_doxygen)
 	 
 		endif()
