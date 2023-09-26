@@ -35,7 +35,7 @@ find_package(Cuvis REQUIRED 3.2.0)
 
 If cuvis is installed to default locations, they are found automatically. Else, locate the cuvis.lib and the directory containing cuvis.h.
 
-Finally, link against *cuvis::cuvis*. In the following example, the tarket *main* is linked against cuvis:
+Finally, link against *cuvis::c*. In the following example, the target *main* is linked against cuvis:
 ```
 add_executable(main main.c)
 target_link_libraries(main PRIVATE cuvis::c)
