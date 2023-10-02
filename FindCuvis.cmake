@@ -111,7 +111,8 @@ else()
 
   find_package_handle_standard_args(Cuvis
 		REQUIRED_VARS Cuvis_LIBRARY Cuvis_INCLUDE_DIR
-		VERSION_VAR Cuvis_VERSION)
+		VERSION_VAR Cuvis_VERSION
+		HANDLE_VERSION_RANGE)
 		 
 
 
