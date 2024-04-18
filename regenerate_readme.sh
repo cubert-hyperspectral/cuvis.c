@@ -3,7 +3,7 @@
 # Navigate to the repository root
 cd $(git rev-parse --show-toplevel)
 
-mkdir tmp
+mkdir -p tmp
 
 fetch_file_from_branch() {
 	local file_path=$1
