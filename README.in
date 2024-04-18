@@ -1,5 +1,3 @@
-# cuvis.c
-
 
 cuvis.c is the cuvis.hub landing page for the Cuvis SDK written in C ([available here](https://github.com/cubert-hyperspectral/cuvis.sdk)).
 
