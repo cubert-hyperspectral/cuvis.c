@@ -17,8 +17,13 @@ fetch_file_from_branch() {
 	# If the file was not found (HTTP 404), fetch it from the default branch
     if [ "$status_code" -eq 404 ]; then
 		echo "Retry with fallback"
-        curl -o "./tmp/${file_path}" "https://raw.githubusercontent.com/cubert-hyperspectral/cuvis.sdk/${default_branch}/readme/${file_path}"
+		status_code=$(curl -o "./tmp/${file_path}" -s -w "%{http_code}" "https://raw.githubusercontent.com/cubert-hyperspectral/cuvis.sdk/${default_branch}/readme/${file_path}")
     fi
+	
+	if [ "$status_code" -eq 404 ]; then
+		echo "could not load file ${file_path}"
+		exit 1
+	fi
 }
 
 fetch_file_from_branch "logo.md" "main"
