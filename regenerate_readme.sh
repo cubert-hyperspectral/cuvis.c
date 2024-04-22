@@ -31,3 +31,6 @@ cat tmp/header.md >> README.md
 printf "\n" >> README.md
 cat README.in >> README.md
 cat tmp/footer.md >> README.md
+
+rm tmp/*
+rmdir tmp
