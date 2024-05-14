@@ -74,12 +74,14 @@ else()
         SOURCES ${GET_VERSION_SOURCE}
 		RUN_OUTPUT_VARIABLE  ${OUTPUT_VARIABLE}
 		LINK_LIBRARIES cuvis::c
+		COMPILE_OUTPUT_VARIABLE GET_VERSION_COMPILE_INFO
         CMAKE_FLAGS
             -DINCLUDE_DIRECTORIES=${Cuivs_INCLUDE_DIR}
             -DLINK_LIBRARIES=${Cuvis_LIBRARY}
 		)
 		if (NOT GET_VERSION_COMPILE_RESULT)
-			message(FATAL_ERROR "Failed to compile and run get_version_executable")
+			message("Failed to compile and run get_version_executable")
+			message(FATAL_ERROR "${GET_VERSION_COMPILE_INFO}")
 		endif()
 		set(${OUTPUT_VARIABLE} "${${OUTPUT_VARIABLE}}" CACHE INTERNAL "${OUTPUT_VARIABLE}")
 
