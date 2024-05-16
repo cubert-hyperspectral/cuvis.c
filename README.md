@@ -19,7 +19,7 @@ source code page.
 
 ### Prerequisites
 
-You need to install the Cuvis C SDK from [here](https://cloud.cubert-gmbh.de/index.php/s/m1WfR66TjcGl96z).
+You need to install the Cuvis C SDK from [here](https://cloud.cubert-gmbh.de/s/q3YiPZPJe5oXziZ).
 
 ### Importing Cuvis C SDK via CMake 
 
@@ -49,7 +49,7 @@ target_link_libraries(main PRIVATE cuvis::c)
 We provide an additional example repository [here](https://github.com/cubert-hyperspectral/cuvis.c.examples),
 covering some basic applications.
 
-Further, we provide a set of example measurements to explore [here](https://cloud.cubert-gmbh.de/index.php/s/3oECVGWpC1NpNqC).
+Further, we provide a set of example measurements to explore [here](https://cloud.cubert-gmbh.de/s/SrkSRja5FKGS2Tw).
 These measurements are also used by the examples mentioned above.
 
 ### Getting involved
