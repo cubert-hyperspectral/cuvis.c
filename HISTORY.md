@@ -7,7 +7,7 @@
 - Added `global_loglevel` to `cuvis_init`
 - Added `frame_id` to `mesu_metadata_t`
 - Added `raw_frame_id` to `sensor_info_t`
-- Added `:c:function:`cuvis_shutdown``
+- Added ``:c:function:`cuvis_shutdown`
 - Added `length` to `cuvis_measurement_get_data_string_length`
 - Added `full_export` to `cuvis_save_args_t`
 - Removed `worker_count`, `poll_interval`, `worker_queue_hard_limit`, `worker_queue_soft_limit`, `can_drop`  from `cuvis_worker_settings_t`
