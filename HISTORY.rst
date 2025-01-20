@@ -9,8 +9,8 @@ v3.3.0
 - Added `frame_id` to :c:struct:`mesu_metadata_t`
 - Added `raw_frame_id` to :c:struct:`sensor_info_t`
 - Added :c:func:`cuvis_shutdown`
-- Added `length` to :c:func:`cuvis::cuvis_measurement_get_data_string`
-- Added :c:func:`cuvis::cuvis_measurement_get_data_string_length`
+- Added `length` to :c:func:`cuvis_mesu::cuvis_measurement_get_data_string`
+- Added :c:func:`cuvis_mesu::cuvis_measurement_get_data_string_length`
 - Added `full_export` to `cuvis_save_args_t`
 - Removed `worker_count`, `poll_interval`, `worker_queue_hard_limit`, `worker_queue_soft_limit`, `can_drop`  from `cuvis_worker_settings_t`
 - Added `input_queue_size`, `mandatory_queue_size`, `supplementary_queue_size`, `output_queue_size`, `can_skip_measurements`, `can_skip_supplementary_steps`, `can_drop_results` to `cuvis_worker_settings_t`
