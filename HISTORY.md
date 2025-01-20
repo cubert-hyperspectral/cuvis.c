@@ -1,0 +1,22 @@
+
+# v3.3.0
+- Removed `keep_out_of_sequence` from `cuvis_worker_settings_t`
+- Changed `cuvis_comp_temperature` from `int` to `double`
+- Changed `spectra_multiplier` of `cuvis_export_general_settings_t` from `double` to `uint8_t`
+- Added `width` and `height` to `sensor_info_t`
+- Added `global_loglevel` to `cuvis_init`
+- Added `frame_id` to `mesu_metadata_t`
+- Added `raw_frame_id` to `sensor_info_t`
+- Added `cuvis_shutdown`
+- Added `length` to `cuvis_measurement_get_data_string_length`
+- Added `full_export` to `cuvis_save_args_t`
+- Removed `worker_count`, `poll_interval`, `worker_queue_hard_limit`, `worker_queue_soft_limit`, `can_drop`  from `cuvis_worker_settings_t`
+- Added `input_queue_size`, `mandatory_queue_size`, `supplementary_queue_size`, `output_queue_size`, `can_skip_measurements`, `can_skip_supplementary_steps`, `can_drop_results` to `cuvis_worker_settings_t`
+- Added `cuvis_worker_state_t`
+- Added `cuvis_calibration_info_t`
+- Added `cuvis_session_file_get_thumbnail`
+- Added `cuvis_acq_cont_set_pixel_format`, `cuvis_acq_cont_get_pixel_format`, `cuvis_acq_cont_get_available_pixel_format_count`, `cuvis_acq_cont_get_available_pixel_format`
+- Added `cuvis_exporter_flush`
+- Renamed `cuvis_acq_cont_preview_mode` to `cuvis_acq_cont_binning`
+- Removed `pre_pan_sharpen_cube` from `cuvis_export_general_settings_t` (Still exists in `cuvis_viewer_settings_t`)
+- Added `pixel_format` and `binning` to `cuvis_sensor_info_t`
