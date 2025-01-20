@@ -1,6 +1,6 @@
 
 # v3.3.0
-- Removed `keep_out_of_sequence` from ``:c:struct:`cuvis_worker_settings_t``
+- Removed `keep_out_of_sequence` from ``:c:struct:`cuvis_worker_settings_t`
 - Changed `cuvis_comp_temperature` from `int` to `double`
 - Changed `spectra_multiplier` of `cuvis_export_general_settings_t` from `double` to `uint8_t`
 - Added `width` and `height` to `sensor_info_t`
