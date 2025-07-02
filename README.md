@@ -29,7 +29,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cuvis.c")
 
 Then you need to run the *find_package* function:
 ```
-find_package(Cuvis REQUIRED 3.3.0)
+find_package(Cuvis REQUIRED 3.4.0)
 ```
 
 If cuvis is installed to default locations, they are found automatically. Else, locate the cuvis.lib and the directory containing cuvis.h.
