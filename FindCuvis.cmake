@@ -68,6 +68,14 @@ else()
   function(get_library_version LIB_PATH OUTPUT_VARIABLE)
     set(GET_VERSION_SOURCE "${CMAKE_CURRENT_LIST_DIR}/helper/get_version.c")
 
+    # The probe output is the only evidence of which library is really there, so it must
+    # never be served from a cache written for a different SDK. Keying on the library
+    # path or timestamp would not do: on Windows that is the import library, while the
+    # probe executable loads cuvis.dll off PATH, and the two can diverge.
+    unset(GET_VERSION_RUN_RESULT CACHE)
+    unset(GET_VERSION_COMPILE_RESULT CACHE)
+    unset(${OUTPUT_VARIABLE} CACHE)
+
 	try_run(
 		GET_VERSION_RUN_RESULT GET_VERSION_COMPILE_RESULT
         ${CMAKE_BINARY_DIR}/try_compile
@@ -101,13 +109,21 @@ else()
   set(lib_version_MINOR ${CMAKE_MATCH_2})
   set(lib_version_PATCH ${CMAKE_MATCH_3})
 
-  # Check the library version against the required version
-  set(CUVIS_VERSION_STRING "${lib_version_MAJOR}.${lib_version_MINOR}.${lib_version_PATCH}")
+  # The library reports "CUBERT SDK v. X.Y.Z build: <hash>". The version alone does not
+  # identify a build, so keep the hash for the mismatch diagnostics in the bindings. An
+  # absent build segment leaves it empty rather than failing the configure.
+  set(build_hash "")
+  string(REGEX MATCH "build: ([0-9a-fA-F]+)" LIB_BUILD_MATCH "${LIB_VERSION}")
+  if(LIB_BUILD_MATCH)
+    set(build_hash "${CMAKE_MATCH_1}")
+  endif()
 
   # Provide configuration information for find_package(Cuvis)
 
   set(Cuvis_FOUND TRUE CACHE INTERNAL "")
   set(Cuvis_VERSION "${lib_version_MAJOR}.${lib_version_MINOR}.${lib_version_PATCH}" CACHE INTERNAL "")
+  set(Cuvis_VERSION_STRING "${LIB_VERSION}" CACHE INTERNAL "")
+  set(Cuvis_BUILD_HASH "${build_hash}" CACHE INTERNAL "")
   set(Cuvis_INCLUDE_DIRS "${Cuvis_INCLUDE_DIR}" CACHE INTERNAL "")
   set(Cuvis_LIBRARIES "cuvis::c" CACHE INTERNAL "")
 
